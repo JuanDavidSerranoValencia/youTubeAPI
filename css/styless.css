@@ -287,3 +287,42 @@ nav{
     margin: 10px 0px;
 
 }
+.publisher{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.publisher div{
+    flex: 1;
+    line-height: 18px;
+}
+
+.publisher img{
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.publisher div p{
+    color: #000;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.publisher div span{
+    font-size: 13px;
+    color:#5a5a5a;
+}
+
+.publisher button{
+    background: red;
+    color: #fff;
+    padding: 8px 30px;
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+vid-description
