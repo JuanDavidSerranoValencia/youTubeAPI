@@ -131,3 +131,16 @@ nav{
     width: 50%;
     margin-bottom: 25px;
 }
+/*Main*/
+.container{
+    background: #f9f9f9;
+    padding: 20px 2% 20px 17%;
+}
+
+.banner{
+    width: 100%;
+}
+.banner img{
+    width: 100%;
+    border-radius: 8px;
+}
