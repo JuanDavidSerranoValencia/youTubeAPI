@@ -429,3 +429,30 @@ nav{
     }
 
 }
+
+
+.result-box {
+    position: absolute;
+    width: 400px;
+    max-height: 350px;
+    overflow-y: auto;
+    border-radius: 20px;
+    background-color: var(--gray);
+    z-index: 2;
+}
+
+.result-box ul {
+    border-top: 1px solid var(--gray);
+    padding: 15px 10px;
+}
+
+.result-box ul li {
+    list-style: none;
+    border-radius: 3px;
+    padding: 15px 10px;
+    cursor: pointer;
+}
+
+.result-box ul li:hover {
+    background: var(--green);
+}

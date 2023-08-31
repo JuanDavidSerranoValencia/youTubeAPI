@@ -9,7 +9,6 @@ let fotoCanal = async ()=>{
     let res = await peticion.json();
     let seleccion = document.querySelector(".nav-right");
     seleccion.insertAdjacentHTML  ("afterbegin",/*html*/`
-   
 
         <img src="images/upload.png">
         <img src="images/more.png">
@@ -46,13 +45,15 @@ let fondoVideo = async ()=>{
             <img src=${fotoC.avatar[1].url}>
             <div class="vid-info">
                 <a href="videos.html">${value.title}</a>
-                <p>CreativeCode</p>
+                <p>${fotoC.title}</p>
                 <p>${value.number_of_views}&bull; ${value.published_time}</p>
             </div>
         </div>
     </div>` ).join("")}
         `)};
        
+fondoVideo();
+
 
 
 var menuIcon = document.querySelector(".menu-icon");
@@ -65,4 +66,4 @@ menuIcon.onclick=function(){
 }
 
 
-fondoVideo();
+
