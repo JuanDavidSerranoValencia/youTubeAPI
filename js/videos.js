@@ -1,8 +1,16 @@
 let localID = localStorage.getItem('Id')
-
-
+let urlDetallesVideo= `https://youtube138.p.rapidapi.com/video/details/?id=${localID}&hl=en&gl=US`;
+let urlDetallesCanal = 'https://youtube138.p.rapidapi.com/channel/details/?id=UC8fkwsjcI_MhralEX1g4OBw&hl=en&gl=US';
+let urlVideos = 'https://youtube138.p.rapidapi.com/channel/videos/?id=UC8fkwsjcI_MhralEX1g4OBw&hl=en&gl=US';
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '99a73f6972msh1c2028ce74233abp1ee836jsn226cae22b5f0',
+		'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
+	}
+};
 let imgNav = async ()=>{
-    let peticion = await fetch(`storage/canal.json`);
+    let peticion = await fetch(`storage/detallesCanal.json`);
     let res = await peticion.json();
     let seleccion = document.querySelector(".nav-right");
     seleccion.insertAdjacentHTML  ("afterbegin",/*html*/`
@@ -17,44 +25,52 @@ let imgNav = async ()=>{
 imgNav();
 
 let barraLateral = async() => {
-    let peticion = await fetch ('storage/channelSearch.json') 
+    let peticion = await fetch ('storage/channelSearch.json',options)
+    let foto= await fetch(`storage/detallesCanal.json`,options); 
     let res = await peticion.json()
-    let foto= await fetch(`storage/canal.json`);
     let fotoC = await foto.json();
     let seleccion = document.querySelector('.right-sidebar')
     seleccion.insertAdjacentHTML('beforeend', /*html*/`
     ${res.videos.map((values)=>/*html*/`
-    <div class="side-video-list">
-    <a href="" class="small-thumbnail"><img src=${values.thumbnails[2].url}></a>
-    <div class="vid-info">
-        <a href="">${values.title}</a>
-        <p>${fotoC.title}</p>
-        <p>${values.number_of_views}&bull; ${values.published_time}</p>
-    </div>
-    </div>`)}
-    `)}
+    <div class="side-video-list" link_video=${values.video_id}>
+        <a href="videos.html" class="small-thumbnail"><img src=${values.thumbnails[3].url}></a>
+        <div class="vid-info">
+            <a href="videos.html">${values.title}</a>
+            <p>${fotoC.title}</p>
+            <p>${values.number_of_views}&bull; ${values.published_time}</p>
+        </div>
+    </div>`).join(" ")}
+    `)
+const info = document.querySelectorAll(".side-video-list")
+info.forEach(video =>{
+    video.addEventListener('click', () =>{
+        let videoID = video.getAttribute("link_video")
+        localStorage.setItem('Id', videoID)
+        window.location.href = 'videos.html';
+    })
+})
+
+};
 barraLateral();
 
 
 let reproductorVideo = async()=>{
-
-    
+    let peticion = await fetch ('storage/detalleVideo.json',options) 
+    let res = await peticion.json()
     let seleccion = document.querySelector('.play-video')
     seleccion.insertAdjacentHTML('beforeend', /*html*/`
-    
-        <iframe  width="1200" height="700" src="https://www.youtube.com/embed/${localID}?si=x8sTL8khZPBt-OGu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                <div class="tags">
-                    <a href="">#Coding</a>
-                    <a href="">#Html</a>
-                    <a href="">#Css</a>
-                    <a href="">#Java Script</a>
+            <div class="contenedor-video">
+                <iframe class="videoYoutube" src="https://www.youtube.com/embed/${localID}?si=x8sTL8khZPBt-OGu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="tags">
+                    <a href="">${res.category}</a>
+                   
                 </div>
-           
-            <h3>Best YouTube Channel to learn web developers</h3>
+            <h3>${res.title}</h3>
             <div class="play-video-info">
-                <p>1225 views &bull; 2 days ago</p>
+                <p>${res.stats.views} &bull;${res.publishedDate}</p>
                 <div>
-                    <a href=""><img src="images/like.png">125</a>
+                    <a href=""><img src="images/like.png">${res.stats.likes}</a>
                     <a href=""><img src="images/dislike.png">125</a>
                     <a href=""><img src="images/share.png">125</a>
                     <a href=""><img src="images/save.png">125</a>
@@ -62,10 +78,11 @@ let reproductorVideo = async()=>{
             </div>
             <hr>
             <div class="publisher">
-                <img src="images/Jack.png">
+           
+                <img src=${res.author.avatar[2].url}>
                 <div>
-                    <p>Easy Tutorials</p>
-                    <span>500k Subscribers</span>
+                    <p>${res.author.title}</p>
+                    <span>${res.author.stats.subscribersText}</span>
                 </div>
                 <button type="button">Subscribirse</button>
 
@@ -78,42 +95,11 @@ let reproductorVideo = async()=>{
 
 
                 <div class="add-comment">
-                    <img src="images/Jack.png">
+                    <img src="${res.author.avatar[2].url}">
                     <input type="text" placeholder="Write Commets...">
                 </div>
 
-                <div class="old-comment">
-                    <img src="images/Jack.png" >
-                    <div>
-                        <h3>Jack Nicholson <span>2 days ago</span></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta ullam laborum sed rem eveniet consequuntur obcaecati, inventore ab molestias omnis necessitatibus odit molestiae magnam voluptatibus adipisci nihil excepturi nostrum architecto!</p>
-                        <div class="acomment-action">
-                            <img src="images/like.png">
-                            <span>244</span>
-                            <img src="images/dislike.png" alt="">
-                            <span></span>
-                            <span>REPLY</span>
-                            <a href="">All replies</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="old-comment">
-                    <img src="images/Jack.png" >
-                    <div>
-                        <h3>Jack Nicholson <span>2 days ago</span></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta ullam laborum sed rem eveniet consequuntur obcaecati, inventore ab molestias omnis necessitatibus odit molestiae magnam voluptatibus adipisci nihil excepturi nostrum architecto!</p>
-                        <div class="acomment-action">
-                            <img src="images/like.png">
-                            <span>244</span>
-                            <img src="images/dislike.png" alt="">
-                            <span></span>
-                            <span>REPLY</span>
-                            <a href="">All replies</a>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
+             
 
             `)};
 

@@ -3,9 +3,19 @@ document.querySelector("#charSearch").addEventListener("change",(e)=>{
     searchAll(e.target.value)
 })*/
 
+let urlDetallesCanal = 'https://youtube138.p.rapidapi.com/channel/details/?id=UC8fkwsjcI_MhralEX1g4OBw&hl=en&gl=US';
+let urlVideos = 'https://youtube138.p.rapidapi.com/channel/videos/?id=UC8fkwsjcI_MhralEX1g4OBw&hl=en&gl=US';
+
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '99a73f6972msh1c2028ce74233abp1ee836jsn226cae22b5f0',
+		'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
+	}
+};
 
 let fotoCanal = async ()=>{
-    let peticion = await fetch(`storage/canal.json`);
+    let peticion = await fetch(`storage/detallesCanal.json`);
     let res = await peticion.json();
     let seleccion = document.querySelector(".nav-right");
     seleccion.insertAdjacentHTML  ("afterbegin",/*html*/`
@@ -19,7 +29,7 @@ let fotoCanal = async ()=>{
 fotoCanal()
 
 let fondoCanal = async ()=>{
-    let peticion = await fetch(`storage/canal.json`);
+    let peticion = await fetch(`storage/detallesCanal.json`);
     let res = await peticion.json();
     let seleccion = document.querySelector(".container");
     seleccion.insertAdjacentHTML  ("afterbegin",/*html*/`
@@ -32,15 +42,14 @@ fondoCanal()
 
 let fondoVideo = async ()=>{
     let peticion = await fetch(`storage/channelSearch.json`);
-    let foto= await fetch(`storage/canal.json`);
+    let foto= await fetch(`storage/detallesCanal.json`);
     let fotoC = await foto.json();
     let res = await peticion.json();
     let seleccion = document.querySelector(".list-container");
     seleccion.insertAdjacentHTML  ("beforeend",/*html*/`
     ${res.videos.map((value)=>/*html*/`
     <div class="vid-list" link_video=${value.video_id}>
-    <a href="videos.html"><img src=${value.thumbnails[3].url}
-        class="thumbnail"></a> 
+        <a href="videos.html"><img src=${value.thumbnails[3].url} class="thumbnail"></a> 
         <div class="flex-div">
             <img src=${fotoC.avatar[1].url}>
             <div class="vid-info">

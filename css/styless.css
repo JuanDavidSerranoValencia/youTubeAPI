@@ -456,3 +456,13 @@ nav{
 .result-box ul li:hover {
     background: var(--green);
 }
+
+.contenedor-video{
+    width: 100%;
+    height:60vh;
+}
+
+.videoYoutube{
+    width: 100%;
+    height: 100%;
+}
