@@ -38,7 +38,7 @@ let fondoVideo = async ()=>{
     let seleccion = document.querySelector(".list-container");
     seleccion.insertAdjacentHTML  ("beforeend",/*html*/`
     ${res.videos.map((value)=>/*html*/`
-    <div class="vid-list">
+    <div class="vid-list" link_video=${value.video_id}>
     <a href="videos.html"><img src=${value.thumbnails[3].url}
         class="thumbnail"></a> 
         <div class="flex-div">
@@ -49,8 +49,19 @@ let fondoVideo = async ()=>{
                 <p>${value.number_of_views}&bull; ${value.published_time}</p>
             </div>
         </div>
-    </div>` ).join("")}
-        `)};
+    </div> `).join(" ")}
+        `)
+    
+const info = document.querySelectorAll(".vid-list")
+info.forEach(video =>{
+    video.addEventListener('click', () =>{
+        let videoID = video.getAttribute("link_video")
+        localStorage.setItem('Id', videoID)
+        window.location.href = 'videos.html';
+    })
+})
+    
+    };
        
 fondoVideo();
 
