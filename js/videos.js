@@ -37,12 +37,12 @@ barraLateral();
 
 
 let reproductorVideo = async()=>{
-    let seleccion = document.querySelector('.row')
+
+    
+    let seleccion = document.querySelector('.play-video')
     seleccion.insertAdjacentHTML('beforeend', /*html*/`
-    <div class="play-video">
-                <video controls autoplay>
-                    <source src="images/video.mp4" type="video/mp4">
-                </video>
+    
+        <iframe  width="1200" height="700" src="https://www.youtube.com/embed/${localID}?si=x8sTL8khZPBt-OGu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 <div class="tags">
                     <a href="">#Coding</a>
                     <a href="">#Html</a>
