@@ -10,7 +10,7 @@ const options = {
 	}
 };
 let imgNav = async ()=>{
-    let peticion = await fetch(`storage/detallesCanal.json`);
+    let peticion = await fetch(urlDetallesCanal,options);
     let res = await peticion.json();
     let seleccion = document.querySelector(".nav-right");
     seleccion.insertAdjacentHTML  ("afterbegin",/*html*/`
@@ -25,7 +25,7 @@ let imgNav = async ()=>{
 imgNav();
 
 let barraLateral = async() => {
-    let peticion = await fetch ('storage/channelSearch.json',options)
+    let peticion = await fetch (urlVideos,options)
     let foto= await fetch(`storage/detallesCanal.json`,options); 
     let res = await peticion.json()
     let fotoC = await foto.json();
@@ -55,7 +55,7 @@ barraLateral();
 
 
 let reproductorVideo = async()=>{
-    let peticion = await fetch ('storage/detalleVideo.json',options) 
+    let peticion = await fetch (urlDetallesVideo,options) 
     let res = await peticion.json()
     let seleccion = document.querySelector('.play-video')
     seleccion.insertAdjacentHTML('beforeend', /*html*/`

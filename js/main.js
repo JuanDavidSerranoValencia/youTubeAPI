@@ -15,7 +15,7 @@ const options = {
 };
 
 let fotoCanal = async ()=>{
-    let peticion = await fetch(`storage/detallesCanal.json`);
+    let peticion = await fetch(urlDetallesCanal ,options);
     let res = await peticion.json();
     let seleccion = document.querySelector(".nav-right");
     seleccion.insertAdjacentHTML  ("afterbegin",/*html*/`
@@ -29,20 +29,20 @@ let fotoCanal = async ()=>{
 fotoCanal()
 
 let fondoCanal = async ()=>{
-    let peticion = await fetch(`storage/detallesCanal.json`);
+    let peticion = await fetch(urlDetallesCanal ,options);
     let res = await peticion.json();
     let seleccion = document.querySelector(".container");
     seleccion.insertAdjacentHTML  ("afterbegin",/*html*/`
     <div class="banner">
-        <img src=${res.banner.desktop[0].url} alt="">
+        <img src=${res.banner.desktop[0].url} alt="sss">
     </div>
         `)};
 fondoCanal()
 
 
 let fondoVideo = async ()=>{
-    let peticion = await fetch(`storage/channelSearch.json`);
-    let foto= await fetch(`storage/detallesCanal.json`);
+    let peticion = await fetch(urlVideos,options);
+    let foto= await fetch(urlDetallesCanal,options);
     let fotoC = await foto.json();
     let res = await peticion.json();
     let seleccion = document.querySelector(".list-container");
