@@ -26,7 +26,7 @@ imgNav();
 
 let barraLateral = async() => {
     let peticion = await fetch (urlVideos,options)
-    let foto= await fetch(`storage/detallesCanal.json`,options); 
+    let foto= await fetch(urlDetallesCanal,options); 
     let res = await peticion.json()
     let fotoC = await foto.json();
     let seleccion = document.querySelector('.right-sidebar')
