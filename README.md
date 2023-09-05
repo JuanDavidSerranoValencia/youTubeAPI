@@ -43,25 +43,30 @@ fondoCanal(); // Mostrar el banner del canal como fondo
 fondoVideo(); // Mostrar una lista de videos relacionados
 
 
+
 Personalización
 
 Configura las URL y las claves de API adecuadas para tu canal de YouTube.
 Personaliza la estructura y los estilos de la página HTML (index.html) según tus necesidades específicas.
 Añade estilos CSS para dar formato a los elementos creados dinámicamente.
 Código JavaScript para Página de Reproducción de Video (videos.html)
+
 El código JavaScript en la página de reproducción de video (videos.html) se encarga de las siguientes funciones:
 
 Mostrar información detallada del video seleccionado, incluida la reproducción del video de YouTube.
 Mostrar etiquetas, estadísticas y comentarios relacionados con el video.
-Ejemplo de Uso
 
+Ejemplo de Uso
 Para mostrar información detallada del video:
+
+
 
 let localID = localStorage.getItem('Id');
 let urlDetallesVideo = `URL_DEL_VIDEO_DE_YOUTUBE_API`;
 
-// Llamar a la función para mostrar detalles del video
+// sirve para mostrar detalles del video
 reproductorVideo();
+
 
 Configura la URL de la API de YouTube para obtener detalles del video seleccionado.
 Personaliza la estructura y los estilos de la página HTML (videos.html) según tus necesidades.
